@@ -1,0 +1,85 @@
+﻿@model PaginatedList<s3713572_s3698728_a2.Models.Transaction>
+
+@{
+    ViewData["Title"] = "View Transactions";
+}
+
+<body id="overall-background">
+    <div class="content-middle-page">
+        <div class="content-size">
+            <h1>Bank Statement</h1>
+
+            <h3></h3>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            TransactionID
+                        </th>
+                        <th>
+                            transactionType
+                        </th>
+                        <th>
+                            AccountNumber
+                        </th>
+                        <th>
+                            DestAccount
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            Comment
+                        </th>
+                        <th>
+                            ModifyDate
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.transactionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifyDate)
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+            @{ var preDisabled = !Model.PreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.NextPage ? "disabled" : ""; }
+
+            <a asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               class="btn btn-default @preDisabled">
+                Previous
+            </a>
+            <a asp-action="Index"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               class="btn btn-default @nextDisabled">
+                Next
+            </a>
+    </div>
+    </div>
+</body>

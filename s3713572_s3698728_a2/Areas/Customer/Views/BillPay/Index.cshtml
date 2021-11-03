@@ -1,0 +1,37 @@
+﻿@model Customer
+@{ ViewData["Title"] = "Account Payment"; }
+
+
+
+<body id="overall-background">
+    <div class="content-middle-page">
+        <div class="content-size">
+            <h1 class="display-4 text-position-fix">Account Payment</h1>
+            <h3 class="content-topic-position">Your Accounts:</h3>
+
+            <table class="table">
+                <tr>
+                    <th>Account Number</th>
+                    <th>Account Type</th>
+                    <th>Payment Numbers</th>
+                    <th></th>
+                </tr>
+                @foreach (var account in Model.Accounts)
+                {
+    <tr>
+        <td>@Html.DisplayFor(x => account.AccountNumber)</td>
+        <td>@account.AccountType.ToString()</td>
+        <td>@account.BillPay.Count()</td>
+        <td>
+            <a class="btn btn-outline-dark" asp-action="addPayment" asp-route-id="@account.AccountNumber">Schedule Payment</a>
+            <a class="btn btn-outline-dark" asp-action="PaymentList" asp-route-id="@account.AccountNumber">View Payment</a>
+        </td>
+    </tr>
+}
+            </table>
+        </div>
+    </div>
+</body>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

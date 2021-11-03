@@ -1,0 +1,75 @@
+﻿@model PaginatedList<s3713572_s3698728_a2.Models.BillPay>
+
+@{
+    ViewData["Title"] = "All Payments";
+}
+
+
+<h1>Payment List</h1>
+
+<h3></h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Payee
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Schedule Date
+            </th>
+            <th>
+                Period
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Modify" asp-route-id="@item.BillPayId">Modify</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BillPayId">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payee.PayeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduleDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Period)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@{
+    var preDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+
+<a asp-action="PaymentList"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @preDisabled">
+    Previous
+</a>
+<a asp-action="PaymentList"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

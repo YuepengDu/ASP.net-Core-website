@@ -1,0 +1,49 @@
+﻿@model s3713572_s3698728_a2.UserCategory.Admin.Models.Login
+@{ ViewData["Title"] = "Lock"; }
+
+<body id="overall-background">
+    <div class="content-middle-page">
+        <div class="content-size">
+            <h1 style="margin-left:20px;">Lock</h1>
+
+            <div style="margin-left:20px;">
+                <h4>Customer</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.LoginID)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.LoginID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CustomerID)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CustomerID)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PasswordHash)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PasswordHash)
+                    </dd>
+
+                </dl>
+
+                <form asp-action="Lock">
+                    <input type="hidden" asp-for="CustomerID" />
+                    <input type="submit" value="Lock" class="btn btn-danger" />
+                </form>
+
+
+                <a style="padding-top:40px;" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+            @section Scripts {
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+            }

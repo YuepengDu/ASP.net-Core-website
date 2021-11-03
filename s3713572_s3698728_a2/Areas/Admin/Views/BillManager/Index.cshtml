@@ -1,0 +1,100 @@
+﻿@model IEnumerable<s3713572_s3698728_a2.UserCategory.Admin.Models.BillPay>
+
+@{ ViewData["Title"] = "Account List"; }
+
+@functions{
+    public bool isBlocked(bool status)
+    {
+        if (status == true)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+<body id="overall-background">
+    <div class="content-middle-page">
+        <div class="content-size">
+            <h1>Select an account to manage its bill payment</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BillPayId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PayeeID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScheduleDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Period)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModifyDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Block)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BillPayId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayeeID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ScheduleDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Period)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifyDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Block)
+                            </td>
+                            @if (isBlocked(item.Block))
+                            {
+                                <td>
+                                    <a class="btn btn-outline-dark" asp-controller="BillManager" asp-action="UnBlockBill" asp-route-id="@item.BillPayId">UnBlock</a>
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    <a class="btn btn-outline-dark" asp-controller="BillManager" asp-action="BlockBill" asp-route-id="@item.BillPayId">Block</a>
+                                </td>
+                            }
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<s3713572_s3698728_a2.UserCategory.Admin.Models.Account>
+
+@{ ViewData["Title"] = "Account List"; }
+<body id="overall-background">
+    <div class="content-middle-page">
+        <div class="content-size">
+            <h1>Select an account to manage its bill payment</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModifyDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Balance)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifyDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-dark" asp-controller="TransactionManager" asp-action="Index" asp-route-id="@item.AccountNumber">Select</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p><a asp-area="admin" asp-controller="CustomerManager" asp-action="Index">Previous Page</a></p>
+        </div>
+    </div>
+</body>

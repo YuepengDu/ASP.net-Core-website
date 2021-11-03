@@ -1,0 +1,38 @@
+﻿@model Login
+@{
+    ViewData["Title"] = "Login";
+}
+
+<body id="customer-login-background">
+
+    <div class="row customer-login-form-diff">
+        <div class="col-md-4" style="margin-left:80px; border-color:darkgrey">
+            <div>
+                <h1 class="display-4" style="text-align:center; margin-left:100px;">Login</h1>
+            </div>
+            <form asp-action="Login" style="width:300px;">
+                <div class="form-group customer-login-items-position">
+                    <label asp-for="LoginID" class="control-label"></label>
+                    <input asp-for="LoginID" class="form-control" />
+                    <span asp-validation-for="LoginID" class="text-danger"></span>
+                </div>
+                <div class="form-group customer-login-items-position">
+                    <label for="Password" class="control-label">Password</label>
+                    <input id="Password" name="Password" type="password" class="form-control"
+                           data-val="true" data-val-required="The Password field is required." />
+                    @Html.ValidationMessage("Password", new { @class = "text-danger" })
+                </div>
+                <div class="form-group customer-login-items-position" style="margin-left:120px;">
+                    <input type="submit" value="Login" class="btn btn-outline-dark" />
+                </div>
+                <div class="container" style="margin-left:100px;">  <a id="admin-link" asp-area="admin" asp-controller="Admin" asp-action="AdminLogin" target="_blank">admin portal</a></div>
+                @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
+            </form>
+        </div>
+    </div>
+
+</body>
+
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }

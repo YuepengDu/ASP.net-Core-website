@@ -1,0 +1,60 @@
+﻿@model IEnumerable<s3713572_s3698728_a2.UserCategory.Admin.Models.Account>
+@{
+    ViewData["Title"] = "View Accounts";
+}
+<h1 class="display-4">Account information @Html.DisplayNameFor(model => model.CustomerID)</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillPay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifyDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.AccountNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AccountType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Balance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BillPay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ModifyDate)
+    </td>
+    <td>
+        <a asp-controller="BillManager" asp-action="BillList" asp-route-id="@item.CustomerID"><i class="fas fa-user-lock"></i></a>
+
+
+    </td>
+</tr>
+}
+    </tbody>
+</table>

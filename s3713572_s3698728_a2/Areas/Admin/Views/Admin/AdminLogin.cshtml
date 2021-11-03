@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<body id="customer-login-background">
+
+    <div class="row customer-login-form-diff">
+        <div class="row">
+            <div class="col-md-4" style="margin-left:30%; width:auto;">
+
+                <div class="loginForm" style="width:300px;">
+                    <h2 style="margin-top:20px;">Admin Portal Login</h2>
+                    <hr />
+                    <form asp-action="AdminLogin" asp-area="admin" style="margin-left:30px;">
+                        <div class="form-group">
+                            <label for="LoginID" class="control-label">Username</label>
+                            <div class="inputbox">
+                                <input id="LoginID" name="LoginID" class="form-control" value="@ViewBag.LoginID" />
+                            </div>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password" class="control-label">Password</label>
+                            <div class="inputbox">
+                                <input id="Password" name="Password" type="password" class="form-control"
+                                       data-val="true" data-val-required="The Password field is required." />
+                            </div>
+                            @Html.ValidationMessage("Password", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <div class="inputbox">
+                                <input type="submit" value="Login" class="btn btn-outline-dark" style="width:270px;margin-top:40px;" />
+                            </div>
+                        </div>
+                        @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

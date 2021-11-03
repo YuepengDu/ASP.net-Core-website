@@ -1,0 +1,101 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - s3713572_s3698728_a2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="~/js/site.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="background-color:black !important"> 
+            <div class="container">
+                <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="~/img/Logo1.png" alt="logo" style="height:60px; width:60px;"></a>
+                <a style="color:white;">MCBA</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                        
+                        <ul class="navbar-nav">
+                            @{ var isLoggedIn = Context.Session.GetInt32(nameof(Customer.CustomerID)).HasValue; }
+                            @if (isLoggedIn)
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark li-font-color" style="font-size:100%;">
+                                        @Context.Session.GetString(nameof(Customer.CustomerName))
+                                    </span>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-secondary" asp-area="Customer" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </li> 
+                            }
+                            else
+                            {
+                                <li class="nav-item" style="float:left;">
+                                    <a class="nav-link text-dark li-font-color trigger-button-transaction-account">Transaction Account</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark li-font-color trigger-button-saving-account">Saving Account</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark li-font-color trigger-button-credit-card">Credit Card</a>
+                                </li>
+                                <li class="nav-item-position">
+                                    <a class="btn btn-outline-dark quick-login"  tabindex="0" role="button" asp-area="Customer" asp-controller="Login" asp-action="Login"><span class="desktop-login-label">Login</span></a>
+                                </li>
+                                <li class="nav-item-position">
+                                    <a class="btn btn-outline-dark" style="color:white !important;" tabindex="0" role="button" href='/Identity/Account/Register'><span class="desktop-login-label">Register</span></a>
+                                </li>
+                            }
+                        </ul>
+
+
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (isLoggedIn)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark li-font-color" asp-area="Customer" asp-controller="Customer" asp-action="Index">My Accounts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark li-font-color" asp-area="Customer" asp-controller="Customer" asp-action="ATMAccountSelection">ATM</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark li-font-color" asp-area="Customer" asp-controller="Customer" asp-action="TransferFromAccountSelection">Transfer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark li-font-color" asp-area="Customer" asp-controller="Customer" asp-action="StatementSelection">My Statement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark li-font-color" asp-area="Customer" asp-controller="BillPay" asp-action="Index">Bill</a>
+                            </li>}
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" style="background-color:black !important">
+            &copy; 2021 - s3713572_s3698728_a2 - <a class="btn btn-outline-dark" style="color:white !important;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
